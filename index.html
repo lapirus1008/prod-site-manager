@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>운영기관 관리 & 점심 룰렛</title>
+  <style>
+    :root {
+      --bg-color: #1a1625;
+      --card-bg: #2d243d;
+      --input-bg: #3d3252;
+      --gold: #ffcc00;
+      --text-main: #eee;
+      --accent: #7c3aed;
+      --danger: #ff4757;
+      --install-color: #00d2ff;
+      --success: #2ed573;
+    }
+
+    body { margin: 0; padding: 25px; display: flex; gap: 25px; height: 100vh; box-sizing: border-box; font-family: 'Pretendard', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow: hidden; }
+
+    /* 레이아웃 및 컨테이너 */
+    .left-container { width: 380px; display: flex; flex-direction: column; gap: 15px; z-index: 5; overflow-y: auto; padding-right: 5px; }
+    .config-card { background: var(--card-bg); border-radius: 20px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1); }
+    .config-card h2 { color: var(--gold); font-size: 1rem; margin: 0 0 15px 0; }
+
+    /* 입력 필드 */
+    textarea, .simple-input { width: 100%; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 12px; color: white; outline: none; font-size: 0.85rem; box-sizing: border-box; }
+    textarea { height: 100px; resize: none; }
+    .simple-input { margin-bottom: 8px; }
+    .search-box { border: 2px solid var(--accent); }
+    .search-box.svc-search { border-color: var(--gold); }
+    .search-box.auth-search { border-color: var(--success); }
+
+    .memo-area { height: 150px !important; font-family: inherit; line-height: 1.5; margin-bottom: 10px; }
+    .memo-status { font-size: 0.75rem; color: var(--success); text-align: right; margin-top: 5px; opacity: 0.8; display: none; }
+
+    /* 버튼 공통 */
+    .btn { width: 100%; border: none; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s; font-size: 0.9rem; margin-top: 5px; }
+    .btn-purple { background: var(--accent); color: white; }
+    .btn-gold { background: var(--gold); color: #1a1625; margin-top: 10px; }
+    .btn-mode { background: var(--success); color: #1a1625; font-size: 1.1rem; margin-bottom: 10px; }
+    .btn-clear { background: transparent; color: #ff4757; border: 1px solid #ff4757; font-size: 0.75rem; margin-top: 20px; }
+
+    .right-panel { flex-grow: 1; background: var(--card-bg); border-radius: 25px; padding: 30px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.05); position: relative; }
+
+    .content-section { display: none; }
+    .content-section.active { display: block; }
+
+    .header-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; gap: 20px; }
+    .title-group { display: flex; align-items: center; gap: 15px; }
+    #counter-title { font-size: 1.8rem; font-weight: 800; color: white; margin: 0; white-space: nowrap; }
+
+    .filter-btn { padding: 8px 16px; border-radius: 20px; border: 2px solid var(--install-color); background: transparent; color: var(--install-color); font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.85rem; }
+    .filter-btn.active { background: var(--install-color); color: #1a1625; }
+    .filter-btn.csv-btn { border-color: var(--success); color: var(--success); }
+    .filter-btn.csv-btn:hover { background: var(--success); color: #1a1625; }
+
+    .button-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+
+    /* 기관 카드 스타일 */
+    .nav-button { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; background: rgba(255, 255, 255, 0.04); border: 2px solid transparent; border-radius: 18px; color: #fff; transition: 0.2s; height: 165px; cursor: pointer; position: relative; }
+    .nav-button:hover { border-color: var(--gold); background: rgba(255, 215, 0, 0.05); transform: translateY(-2px); }
+    .nav-button.installed { border-color: var(--install-color); background: rgba(0, 210, 255, 0.05); }
+    .nav-button img { width: 42px; height: 42px; margin-bottom: 10px; border-radius: 10px; background: white; padding: 5px; object-fit: contain; }
+    .nav-button span { font-size: 0.85rem; text-align: center; font-weight: 600; line-height: 1.2; word-break: keep-all; margin-bottom: 5px; }
+
+    .svc-info { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .svc-badge { font-size: 0.7rem; color: var(--gold); opacity: 0.8; }
+
+    /* 인증 수단 배지 */
+    .auth-badge-row { display: flex; gap: 3px; margin-top: 2px; }
+    .auth-badge { padding: 2px 5px; border-radius: 4px; font-size: 10px; font-weight: bold; background: var(--gold); color: #1a1625; border: 1px solid rgba(0,0,0,0.1); }
+
+    .del-badge { position: absolute; top: 10px; right: 8px; background: var(--danger); color: white; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px; display: none; z-index: 10; }
+    .nav-button:hover .del-badge { display: block; }
+    .install-badge { position: absolute; top: 10px; left: 8px; background: var(--install-color); color: #1a1625; font-size: 10px; font-weight: 800; padding: 3px 6px; border-radius: 4px; z-index: 10; }
+
+    /* 사이드 상세창 */
+    .side-detail { position: fixed; top: 0; right: -450px; width: 400px; height: 100vh; background: #120f1a; transition: 0.4s; z-index: 100; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; border-left: 2px solid var(--gold); overflow-y: auto; }
+    .side-detail.active { right: 0; }
+    .edit-label { width: 100%; color: var(--gold); font-size: 0.75rem; margin-bottom: 5px; margin-top: 15px; text-align: left; }
+    .edit-input { width: 100%; background: #2d243d; border: 1px solid var(--accent); color: white; padding: 12px; border-radius: 10px; font-size: 0.95rem; margin-bottom: 5px; box-sizing: border-box; }
+
+    .auth-group { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 15px; margin-top: 5px; border: 1px solid rgba(255,255,255,0.1); }
+    .auth-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer; font-size: 0.9rem; }
+    .auth-item input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--gold); }
+
+    .btn-install-toggle {
+      width: 100%; padding: 15px; margin-top: 20px; margin-bottom: 10px;
+      border-radius: 12px; border: 2px solid var(--install-color);
+      background: transparent; color: var(--install-color);
+      font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; font-family: inherit;
+    }
+    .btn-install-toggle.on { background: var(--install-color); color: #1a1625; }
+
+    .btn-visit {
+      width: 100%; padding: 15px; background: var(--gold); color: #1a1625;
+      border: none; border-radius: 12px; font-size: 1rem; font-weight: 800;
+      cursor: pointer; text-decoration: none; text-align: center; display: block;
+      box-sizing: border-box; font-family: inherit; transition: 0.3s;
+    }
+    .btn-visit:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+    .overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.7); display: none; z-index: 90; backdrop-filter: blur(3px); }
+    .overlay.active { display: block; }
+
+    /* 칩 스타일 */
+    .menu-chip-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .menu-chip {
+      background: var(--input-bg); color: white; padding: 5px 10px;
+      border-radius: 15px; font-size: 0.8rem; display: flex; align-items: center; gap: 5px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .menu-chip .del-menu { color: var(--danger); cursor: pointer; font-weight: bold; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+  </style>
+  <script src="../../../../Users/ENT-I-109/AppData/Local/Temp/app.js"></script>
+</head>
+<body>
+<div class="overlay" id="overlay" onclick="closeDetail()"></div>
+
+<div class="left-container">
+  <div class="config-card">
+    <button class="btn btn-mode" id="toggleModeBtn" onclick="switchMode()">🍱 점심 룰렛 모드</button>
+  </div>
+
+  <div id="listControls">
+    <div class="config-card">
+      <h2>🔍 기관 검색</h2>
+      <input type="text" class="simple-input search-box" id="searchInput" placeholder="기관명 검색..." onkeyup="handleFilter()">
+      <input type="text" class="simple-input search-box svc-search" id="svcSearchInput" placeholder="서비스 번호로 검색..." onkeyup="handleFilter()">
+      <input type="text" class="simple-input search-box auth-search" id="authSearchInput" placeholder="인증수단 키워드 (모,간,공,금,민)..." onkeyup="handleFilter()">
+    </div>
+    <div class="config-card">
+      <h2>➕ 개별 기관 추가</h2>
+      <input type="text" id="manualName" class="simple-input" placeholder="운영기관명">
+      <input type="text" id="manualUrl" class="simple-input" placeholder="URL (예: www.site.com)">
+      <input type="text" id="manualSvc" class="simple-input" placeholder="서비스 번호 (선택사항)">
+      <button class="btn btn-purple" onclick="addManual()">목록에 추가</button>
+    </div>
+    <div class="config-card">
+      <h2>📦 대량 데이터 동기화</h2>
+      <textarea id="bulkInput" placeholder="표 데이터를 번호부터 복사해 넣으세요."></textarea>
+      <button class="btn btn-gold" onclick="importBulk()">데이터 합치기</button>
+    </div>
+    <div class="config-card">
+      <h2>📝 개인 메모장</h2>
+      <textarea id="personalMemo" class="memo-area" placeholder="자동 저장 중..." oninput="saveMemo()"></textarea>
+      <div id="saveIndicator" class="memo-status">자동 저장됨 ✓</div>
+      <button class="btn-clear" onclick="clearMemo()">메모 전체 삭제</button>
+      <button class="btn-clear" onclick="clearStorage()">모든 데이터 초기화</button>
+    </div>
+  </div>
+
+  <div id="rouletteControls" style="display:none;">
+    <div class="config-card">
+      <h2>🍱 점심 메뉴 관리</h2>
+      <input type="text" id="newMenuInput" class="simple-input" placeholder="새 메뉴 입력 후 Enter" onkeypress="if(event.keyCode==13) addLunchMenu()">
+      <div class="menu-chip-container" id="menuChipContainer"></div>
+    </div>
+  </div>
+</div>
+
+<div class="right-panel">
+  <section id="listSection" class="content-section active">
+    <div class="header-area">
+      <div class="title-group">
+        <h1 id="counter-title">🏛️ 운영기관 목록</h1>
+        <button id="onlyInstallFilter" class="filter-btn" onclick="toggleOnlyInstall()">설치형 보기</button>
+        <button class="filter-btn csv-btn" onclick="downloadCSV()">CSV 다운로드</button>
+      </div>
+      <span id="itemCount"># 0 ITEMS</span>
+    </div>
+    <div class="button-grid" id="buttonGrid"></div>
+  </section>
+
+  <section id="rouletteSection" class="content-section">
+    <div class="header-area"><h1>🍱 오늘의 점심 추천</h1></div>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 550px;">
+      <div style="position: relative; width: 450px; height: 450px; margin-bottom: 25px;">
+        <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid var(--gold); z-index: 10;"></div>
+        <canvas id="rouletteCanvas" width="500" height="500" style="width: 100%; height: 100%; transition: transform 4s cubic-bezier(0.1, 0, 0.2, 1);"></canvas>
+      </div>
+      <button id="spinBtn" class="btn btn-gold" style="width:250px; font-size:1.5rem; height:60px;" onclick="spinRoulette()">돌려 돌려 룰렛!</button>
+      <h2 id="rouletteResult" style="margin-top:30px; color:var(--gold); font-size:2.2rem; min-height:45px; text-align: center;"></h2>
+    </div>
+  </section>
+</div>
+
+<div class="side-detail" id="sideDetail">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <span style="cursor:pointer; font-size:24px; color:white;" onclick="closeDetail()">✕</span>
+    <h3 style="color:var(--gold); margin:0;">기관 상세 정보</h3>
+  </div>
+  <img id="detIcon" style="width:60px; height:60px; background:white; border-radius:12px; padding:5px; margin: 20px auto 10px; display:block;">
+  <div class="edit-label">기관 명칭 수정</div>
+  <input type="text" id="editName" class="edit-input" oninput="autoSaveDetail()">
+  <div class="edit-label">URL 수정</div>
+  <input type="text" id="editUrl" class="edit-input" oninput="autoSaveDetail()">
+  <div class="edit-label">서비스 번호 수정</div>
+  <input type="text" id="editSvc" class="edit-input" oninput="autoSaveDetail()">
+  <div class="edit-label">지원 인증 수단</div>
+  <div class="auth-group">
+    <label class="auth-item"><input type="checkbox" class="auth-chk" data-key="mobile" onchange="autoSaveDetail()"> 모바일신분증</label>
+    <label class="auth-item"><input type="checkbox" class="auth-chk" data-key="simple" onchange="autoSaveDetail()"> 간편인증</label>
+    <label class="auth-item"><input type="checkbox" class="auth-chk" data-key="joint" onchange="autoSaveDetail()"> 공동인증서</label>
+    <label class="auth-item"><input type="checkbox" class="auth-chk" data-key="finance" onchange="autoSaveDetail()"> 금융인증서</label>
+    <label class="auth-item"><input type="checkbox" class="auth-chk" data-key="private" onchange="autoSaveDetail()"> 민간ID</label>
+  </div>
+  <div id="detailSaveStatus" style="font-size: 0.7rem; color: var(--success); text-align: right; margin-top: 10px; opacity: 0; transition: 0.3s;">변경사항 저장됨 ✓</div>
+  <button id="installToggleBtn" class="btn-install-toggle" onclick="toggleInstallStatus()">설치형 설정/해제</button>
+  <a id="detGoLink" class="btn-visit" href="" target="_blank">사이트 방문하기</a>
+</div>
+
+<script>
+  let allData = JSON.parse(localStorage.getItem('policyData')) || [];
+  let lunchMenus = JSON.parse(localStorage.getItem('lunchMenus')) || ["김치찌개", "돈까스", "제육볶음", "짜장면", "초밥", "햄버거", "마라탕", "쌀국수"];
+  let currentDetailIdx = null;
+  let isOnlyInstallMode = false;
+  let isRouletteMode = false;
+
+  // 룰렛 상태 변수
+  let currentRotation = 0;
+  let isSpinning = false;
+
+  const authConfig = {
+    mobile:  { text: '모', key: 'mobile' },
+    simple:  { text: '간', key: 'simple' },
+    joint:   { text: '공', key: 'joint' },
+    finance: { text: '금', key: 'finance' },
+    private: { text: '민', key: 'private' }
+  };
+
+  window.onload = () => { renderButtons(allData); renderMenuChips(); drawRoulette(); loadMemo(); };
+
+  function autoSaveDetail() {
+    if (currentDetailIdx === null) return;
+    const newName = document.getElementById('editName').value.trim();
+    const newUrl = document.getElementById('editUrl').value.trim();
+    const newSvc = document.getElementById('editSvc').value.trim();
+    if(!newName || !newUrl) return;
+    const authMethods = {};
+    document.querySelectorAll('.auth-chk').forEach(chk => { authMethods[chk.getAttribute('data-key')] = chk.checked; });
+    allData[currentDetailIdx].name = newName;
+    allData[currentDetailIdx].url = newUrl;
+    allData[currentDetailIdx].svcNum = newSvc;
+    allData[currentDetailIdx].authMethods = authMethods;
+    localStorage.setItem('policyData', JSON.stringify(allData));
+    handleFilter();
+    const status = document.getElementById('detailSaveStatus');
+    status.style.opacity = '1';
+    clearTimeout(window.saveTimer);
+    window.saveTimer = setTimeout(() => { status.style.opacity = '0'; }, 1000);
+  }
+
+  function renderButtons(data) {
+    const grid = document.getElementById('buttonGrid');
+    grid.innerHTML = '';
+    data.forEach((item) => {
+      const realIndex = allData.indexOf(item);
+      const domain = item.url.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
+      let authHtml = '<div class="auth-badge-row">';
+      if(item.authMethods) {
+        Object.keys(authConfig).forEach(key => {
+          if(item.authMethods[key]) {
+            authHtml += `<div class="auth-badge">${authConfig[key].text}</div>`;
+          }
+        });
+      }
+      authHtml += '</div>';
+      const div = document.createElement('div');
+      div.className = `nav-button ${item.isInstall ? 'installed' : ''}`;
+      div.onclick = () => openDetail(realIndex);
+      div.innerHTML = `
+        ${item.isInstall ? '<div class="install-badge">설치형</div>' : ''}
+        <div class="del-badge" onclick="event.stopPropagation(); deleteItem(${realIndex})">✕ 삭제</div>
+        <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=128" onerror="this.src='https://icons.duckduckgo.com/ip3/${domain}.ico'">
+        <span>${item.name}</span>
+        <div class="svc-info">${item.svcNum ? `<div class="svc-badge">No. ${item.svcNum}</div>` : ''}${authHtml}</div>
+      `;
+      grid.appendChild(div);
+    });
+    document.getElementById('itemCount').innerText = `# ${data.length} ITEMS`;
+  }
+
+  function handleFilter() {
+    const nameQuery = document.getElementById('searchInput').value.toLowerCase();
+    const svcQuery = document.getElementById('svcSearchInput').value.toLowerCase();
+    const authQuery = document.getElementById('authSearchInput').value.trim();
+    let filtered = allData;
+    if (isOnlyInstallMode) filtered = filtered.filter(item => item.isInstall);
+    if (authQuery) {
+      filtered = filtered.filter(item => {
+        if (!item.authMethods) return false;
+        const targetKeys = Object.keys(authConfig).filter(k => authConfig[k].text === authQuery);
+        return targetKeys.some(k => item.authMethods[k] === true);
+      });
+    }
+    if (nameQuery) filtered = filtered.filter(item => item.name.toLowerCase().includes(nameQuery));
+    if (svcQuery) filtered = filtered.filter(item => (item.svcNum || "").toLowerCase().includes(svcQuery));
+    renderButtons(filtered);
+    return filtered;
+  }
+
+  function downloadCSV() {
+    const filtered = handleFilter();
+    if (filtered.length === 0) return alert("다운로드할 데이터가 없습니다.");
+    let csvContent = "기관명,URL,서비스번호,설치형여부,인증수단\n";
+    filtered.forEach(item => {
+      const isInstallText = item.isInstall ? "설치형" : "일반";
+      let activeAuths = [];
+      if (item.authMethods) {
+        Object.keys(authConfig).forEach(key => { if (item.authMethods[key]) activeAuths.push(authConfig[key].text); });
+      }
+      const authText = activeAuths.join("|");
+      const row = [`"${item.name}"`,`"${item.url}"`,`"${item.svcNum || ''}"`,`"${isInstallText}"`,`"${authText}"`].join(",");
+      csvContent += row + "\n";
+    });
+    const blob = new Blob(["\ufeff" + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    const today = new Date().toISOString().slice(0, 10);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `운영기관_목록_${today}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  function openDetail(index) {
+    currentDetailIdx = index;
+    const item = allData[index];
+    const domain = item.url.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
+    document.getElementById('editName').value = item.name;
+    document.getElementById('editUrl').value = item.url;
+    document.getElementById('editSvc').value = item.svcNum || "";
+    document.getElementById('detIcon').src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+    document.getElementById('detGoLink').href = item.url;
+    document.getElementById('installToggleBtn').className = `btn-install-toggle ${item.isInstall ? 'on' : ''}`;
+    const auths = item.authMethods || {};
+    document.querySelectorAll('.auth-chk').forEach(chk => { chk.checked = !!auths[chk.getAttribute('data-key')]; });
+    document.getElementById('sideDetail').classList.add('active');
+    document.getElementById('overlay').classList.add('active');
+  }
+
+  function switchMode() {
+    isRouletteMode = !isRouletteMode;
+    document.getElementById('listSection').classList.toggle('active', !isRouletteMode);
+    document.getElementById('rouletteSection').classList.toggle('active', isRouletteMode);
+    document.getElementById('listControls').style.display = isRouletteMode ? 'none' : 'block';
+    document.getElementById('rouletteControls').style.display = isRouletteMode ? 'block' : 'none';
+    if(isRouletteMode) {
+      setTimeout(drawRoulette, 100);
+      document.getElementById('rouletteResult').innerText = "";
+    }
+  }
+
+  function toggleOnlyInstall() { isOnlyInstallMode = !isOnlyInstallMode; document.getElementById('onlyInstallFilter').classList.toggle('active', isOnlyInstallMode); handleFilter(); }
+  function addManual() { const name = document.getElementById('manualName').value.trim(); let url = document.getElementById('manualUrl').value.trim(); const svc = document.getElementById('manualSvc').value.trim(); if(!name || !url) return alert("데이터 입력 필요"); if(!url.startsWith('http')) url = 'https://' + url; allData.push({ name, url, svcNum: svc, isInstall: false, authMethods: {} }); saveAndRefresh(); }
+  function saveAndRefresh() { localStorage.setItem('policyData', JSON.stringify(allData)); handleFilter(); }
+  function deleteItem(idx) { if(confirm("삭제?")) { allData.splice(idx, 1); saveAndRefresh(); } }
+  function clearStorage() { if(confirm("초기화?")) { localStorage.clear(); location.reload(); } }
+  function closeDetail() { document.getElementById('sideDetail').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); }
+  function toggleInstallStatus() { if (currentDetailIdx === null) return; allData[currentDetailIdx].isInstall = !allData[currentDetailIdx].isInstall; autoSaveDetail(); }
+  function saveMemo() { localStorage.setItem('personalMemoData', document.getElementById('personalMemo').value); document.getElementById('saveIndicator').style.display='block'; setTimeout(()=>document.getElementById('saveIndicator').style.display='none', 1000); }
+  function loadMemo() { document.getElementById('personalMemo').value = localStorage.getItem('personalMemoData') || ''; }
+  function clearMemo() { if(confirm("삭제?")) { document.getElementById('personalMemo').value = ''; localStorage.removeItem('personalMemoData'); } }
+
+  function importBulk() {
+    const rawText = document.getElementById('bulkInput').value;
+    const lines = rawText.split('\n').map(l => l.trim()).filter(l => l !== "");
+    let currentGroup = [];
+    let count = 0;
+    lines.forEach(line => {
+      if (/^\d+\.?$/.test(line)) { process(currentGroup); currentGroup = [line]; } else currentGroup.push(line);
+    });
+    process(currentGroup);
+    function process(g) {
+      const uIdx = g.findIndex(i => i.includes('.') || i.includes('www'));
+      if (uIdx !== -1) {
+        let n = g[uIdx-1], u = g[uIdx];
+        if(!n || n==='-' || !u) return;
+        if(!u.startsWith('http')) u = 'https://' + u;
+        allData.push({ name: n, url: u, svcNum: "", isInstall: false, authMethods: {} });
+        count++;
+      }
+    }
+    saveAndRefresh();
+    alert(count + "개 동기화 완료");
+  }
+
+  /* 🍱 룰렛 로직 수정 */
+  const canvas = document.getElementById('rouletteCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function drawRoulette() {
+    if (lunchMenus.length === 0) {
+      ctx.clearRect(0,0,500,500);
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.fillText("메뉴를 추가해주세요", 250, 250);
+      return;
+    }
+    const arc = (Math.PI * 2) / lunchMenus.length;
+    const colors = ["#7c3aed", "#5b21b6", "#4c1d95", "#6d28d9", "#8b5cf6", "#4c1d95"];
+    ctx.clearRect(0,0,500,500);
+    lunchMenus.forEach((menu, i) => {
+      const angle = i * arc;
+      ctx.beginPath();
+      ctx.fillStyle = colors[i % colors.length];
+      ctx.moveTo(250, 250);
+      ctx.arc(250, 250, 230, angle, angle + arc);
+      ctx.fill();
+      ctx.save();
+      ctx.translate(250, 250);
+      ctx.rotate(angle + arc / 2);
+      ctx.textAlign = "right";
+      ctx.fillStyle = "white";
+      ctx.font = "bold 18px Pretendard";
+      ctx.fillText(menu, 210, 10);
+      ctx.restore();
+    });
+  }
+
+  function spinRoulette() {
+    if (isSpinning || lunchMenus.length === 0) return;
+
+    isSpinning = true;
+    document.getElementById('rouletteResult').innerText = "두구두구두구...";
+    const spinBtn = document.getElementById('spinBtn');
+    spinBtn.disabled = true;
+    spinBtn.style.opacity = "0.5";
+
+    // 회전량 계산 (최소 5바퀴 + 랜덤)
+    const randomRotate = Math.floor(Math.random() * 360);
+    const totalSpin = 360 * 8 + randomRotate;
+    currentRotation += totalSpin;
+
+    canvas.style.transform = `rotate(${currentRotation}deg)`;
+
+    // 4초 후 결과 계산 (transition 시간과 동일)
+    setTimeout(() => {
+      isSpinning = false;
+      spinBtn.disabled = false;
+      spinBtn.style.opacity = "1";
+
+      // 당첨 메뉴 계산
+      // 룰렛은 시계방향으로 돌지만 화살표는 고정(상단)이므로 역방향 계산 필요
+      const actualDeg = currentRotation % 360;
+      const arc = 360 / lunchMenus.length;
+      // 화살표가 12시 방향(270도)에 있으므로 보정
+      const index = Math.floor(((360 - actualDeg + 270) % 360) / arc);
+      const winner = lunchMenus[index];
+
+      document.getElementById('rouletteResult').innerText = `🎉 오늘은 [ ${winner} ] 당첨!`;
+    }, 4000);
+  }
+
+  function addLunchMenu() {
+    const val = document.getElementById('newMenuInput').value.trim();
+    if(val) {
+      lunchMenus.push(val);
+      localStorage.setItem('lunchMenus', JSON.stringify(lunchMenus));
+      document.getElementById('newMenuInput').value = "";
+      renderMenuChips();
+      drawRoulette();
+    }
+  }
+
+  function deleteLunchMenu(index) {
+    lunchMenus.splice(index, 1);
+    localStorage.setItem('lunchMenus', JSON.stringify(lunchMenus));
+    renderMenuChips();
+    drawRoulette();
+    document.getElementById('rouletteResult').innerText = "";
+  }
+
+  function renderMenuChips() {
+    const container = document.getElementById('menuChipContainer');
+    container.innerHTML = lunchMenus.map((m, i) => `
+      <div class="menu-chip">
+        ${m} <span class="del-menu" onclick="deleteLunchMenu(${i})">✕</span>
+      </div>
+    `).join('');
+  }
+</script>
+</body>
+</html>
