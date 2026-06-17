@@ -215,8 +215,8 @@
 </div>
 
 <script>
-  let allData = JSON.parse(localStorage.getItem('policyData')) || [];
-  let lunchMenus = JSON.parse(localStorage.getItem('lunchMenus')) || ["김치찌개", "돈까스", "제육볶음", "짜장면", "초밥", "햄버거", "마라탕", "쌀국수"];
+  let allData = [];
+  let lunchMenus = [];
   let currentDetailIdx = null;
   let isOnlyInstallMode = false;
   let isRouletteMode = false;
@@ -233,7 +233,55 @@
     private: { text: '민', key: 'private' }
   };
 
-  window.onload = () => { renderButtons(allData); renderMenuChips(); drawRoulette(); loadMemo(); };
+  // [서버 연동] 서버의 data.json 파일로부터 전체 데이터를 가져오는 함수
+  async function loadFromServer() {
+    try {
+      const response = await fetch('/api/data');
+      if (response.ok) {
+        const serverData = await response.json();
+        
+        allData = serverData.policyData || [];
+        // 서버에 메뉴가 없으면 기본 메뉴 세팅
+        lunchMenus = serverData.lunchMenus || ["김치찌개", "돈까스", "제육볶음", "짜장면", "초밥", "햄버거", "마라탕", "쌀국수"];
+        
+        // 메모장 값 로드
+        const memoElement = document.getElementById('personalMemo');
+        if(memoElement) memoElement.value = serverData.memo || "";
+
+        // UI 그리기 초기화
+        renderButtons(allData); 
+        renderMenuChips(); 
+        drawRoulette();
+      }
+    } catch (error) {
+      console.error("서버 데이터 로드 실패:", error);
+    }
+  }
+  
+  // [서버 연동] 변경 사항을 실시간으로 서버에 저장(JSON 덮어쓰기)하는 함수
+  async function saveToServer() {
+    try {
+      const memoElement = document.getElementById('personalMemo');
+      const payload = {
+        policyData: allData,
+        lunchMenus: lunchMenus,
+        memo: memoElement ? memoElement.value : ""
+      };
+
+      const response = await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) throw new Error("서버 저장 실패");
+    } catch (error) {
+      console.error("서버 동기화 저장 실패:", error);
+    }
+  }
+  
+  // window.onload = () => { renderButtons(allData); renderMenuChips(); drawRoulette(); loadMemo(); };
+  // 로컬스토리지 대신 서버 데이터를 가져오며 시작
+  window.onload = () => { loadFromServer(); };
 
   function autoSaveDetail() {
     if (currentDetailIdx === null) return;
@@ -247,8 +295,12 @@
     allData[currentDetailIdx].url = newUrl;
     allData[currentDetailIdx].svcNum = newSvc;
     allData[currentDetailIdx].authMethods = authMethods;
-    localStorage.setItem('policyData', JSON.stringify(allData));
+
+    //localStorage.setItem('policyData', JSON.stringify(allData));
+    //로컬스토리지 대신 서버로 변경사항 전송
+    saveToServer();
     handleFilter();
+
     const status = document.getElementById('detailSaveStatus');
     status.style.opacity = '1';
     clearTimeout(window.saveTimer);
@@ -360,14 +412,14 @@
 
   function toggleOnlyInstall() { isOnlyInstallMode = !isOnlyInstallMode; document.getElementById('onlyInstallFilter').classList.toggle('active', isOnlyInstallMode); handleFilter(); }
   function addManual() { const name = document.getElementById('manualName').value.trim(); let url = document.getElementById('manualUrl').value.trim(); const svc = document.getElementById('manualSvc').value.trim(); if(!name || !url) return alert("데이터 입력 필요"); if(!url.startsWith('http')) url = 'https://' + url; allData.push({ name, url, svcNum: svc, isInstall: false, authMethods: {} }); saveAndRefresh(); }
-  function saveAndRefresh() { localStorage.setItem('policyData', JSON.stringify(allData)); handleFilter(); }
+  function saveAndRefresh() { saveToServer().then(() => { handleFilter(); }); }
   function deleteItem(idx) { if(confirm("삭제?")) { allData.splice(idx, 1); saveAndRefresh(); } }
-  function clearStorage() { if(confirm("초기화?")) { localStorage.clear(); location.reload(); } }
+  function clearStorage() { if(confirm("초기화?")) { allData = []; lunchMenus = ["김치찌개", "돈까스", "제육볶음", "짜장면", "초밥", "햄버거", "마라탕", "쌀국수"]; document.getElementById('personalMemo').value = ''; saveToServer().then(() => { location.reload(); }); } }
   function closeDetail() { document.getElementById('sideDetail').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); }
   function toggleInstallStatus() { if (currentDetailIdx === null) return; allData[currentDetailIdx].isInstall = !allData[currentDetailIdx].isInstall; autoSaveDetail(); }
-  function saveMemo() { localStorage.setItem('personalMemoData', document.getElementById('personalMemo').value); document.getElementById('saveIndicator').style.display='block'; setTimeout(()=>document.getElementById('saveIndicator').style.display='none', 1000); }
-  function loadMemo() { document.getElementById('personalMemo').value = localStorage.getItem('personalMemoData') || ''; }
-  function clearMemo() { if(confirm("삭제?")) { document.getElementById('personalMemo').value = ''; localStorage.removeItem('personalMemoData'); } }
+  function saveMemo() { const indicator = document.getElementById('saveIndicator'); if(indicator) indicator.style.display = 'block'; saveToServer().then(() => { setTimeout(() => { if(indicator) indicator.style.display = 'none'; }, 1000); }); }
+  function loadMemo() { }
+  function clearMemo() { if(confirm("삭제?")) { document.getElementById('personalMemo').value = ''; saveToServer(); } }
 
   function importBulk() {
     const rawText = document.getElementById('bulkInput').value;
@@ -461,21 +513,23 @@
 
   function addLunchMenu() {
     const val = document.getElementById('newMenuInput').value.trim();
-    if(val) {
+    if (val) {
       lunchMenus.push(val);
-      localStorage.setItem('lunchMenus', JSON.stringify(lunchMenus));
-      document.getElementById('newMenuInput').value = "";
-      renderMenuChips();
-      drawRoulette();
+      saveToServer().then(() => {
+        document.getElementById('newMenuInput').value = "";
+        renderMenuChips();
+        drawRoulette();
+      });
     }
   }
 
   function deleteLunchMenu(index) {
     lunchMenus.splice(index, 1);
-    localStorage.setItem('lunchMenus', JSON.stringify(lunchMenus));
-    renderMenuChips();
-    drawRoulette();
-    document.getElementById('rouletteResult').innerText = "";
+    saveToServer().then(() => {
+      renderMenuChips();
+      drawRoulette();
+      document.getElementById('rouletteResult').innerText = "";
+    });
   }
 
   function renderMenuChips() {

@@ -1,0 +1,2071 @@
+{
+  "policyData": [
+    {
+      "name": "온통청년",
+      "url": "https://www.youthcenter.go.kr",
+      "isInstall": false,
+      "svcNum": "5000001001",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "공간정보오픈플랫폼(브이월드)",
+      "url": "https://www.vworld.kr",
+      "isInstall": false,
+      "svcNum": "5000000074",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "우주항공청 누리집",
+      "url": "https://www.kasa.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000068",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "공장설립온라인지원",
+      "url": "https://www.factoryon.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000067",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "환경보건이용권",
+      "url": "https://www.ehtis.or.kr/ecovoucher/main.do",
+      "isInstall": false,
+      "svcNum": "5000000075",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "소통24",
+      "url": "https://sotong.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000004",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "국가공간정보통합플랫폼(내토지찾기)",
+      "url": "https://kgeop.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000090",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국민비서",
+      "url": "https://www.ips.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000069",
+      "authMethods": {
+        "mobile": false,
+        "simple": false,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "큐넷",
+      "url": "https://www.q-net.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000082",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "장애인고용공단 대표홈페이지",
+      "url": "https://www.kead.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000156",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "장학재단 대표홈페이지",
+      "url": "https://www.kosaf.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000084",
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "범정부 서비스 통합창구(정부24+)",
+      "url": "https://plus.gov.kr",
+      "isInstall": true,
+      "svcNum": "5000000079",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "마이스터넷",
+      "url": "https://meister.hrdkorea.or.kr/main/main.do",
+      "isInstall": false,
+      "svcNum": "5000000087",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "산업안전포털",
+      "url": "https://portal.kosha.or.kr/",
+      "isInstall": false,
+      "svcNum": "5000000077",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "복지로",
+      "url": "https://www.bokjiro.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000081",
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "원스톱행정심판",
+      "url": "https://simpan.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000072",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "공무원연금공단 대표홈페이지",
+      "url": "https://www.geps.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000272",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "디지털융합플랫폼(구 DPG허브)",
+      "url": "https://portal.koreaconnect.kr/",
+      "isInstall": false,
+      "svcNum": "5000000218",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "고용24",
+      "url": "https://www.work24.go.kr/cm/main.do",
+      "isInstall": true,
+      "svcNum": "5000000291",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "항공우주연구원 대표홈페이지",
+      "url": "https://www.kari.re.kr",
+      "isInstall": false,
+      "svcNum": "5000000275",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "중앙노동위원회",
+      "url": "https://nlrc.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000281",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "노동포털",
+      "url": "https://labor.moel.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000029",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국가농작물 병해충관리시스템",
+      "url": "https://ncpms.rda.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000187",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "면허민원홈페이지",
+      "url": "https://lic.mohw.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000089",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "실험관리시스템",
+      "url": "https://ems.nnfc.re.kr",
+      "isInstall": false,
+      "svcNum": "5000000273",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "전자가족관계등록시스템",
+      "url": "https://efamily.scourt.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000101"
+    },
+    {
+      "name": "전자후견등기시스템",
+      "url": "https://egdrs.scourt.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000102"
+    },
+    {
+      "name": "건강보험심사평가원",
+      "url": "https://www.hira.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000389",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "한국체육산업개발 대표 홈페이지",
+      "url": "https://www.ksponco.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000115",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "지방상수도 서비스포털",
+      "url": "https://water-pos.kwater.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000169",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "흙토람",
+      "url": "https://soil.rda.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000160",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "IBS 과학문화센터",
+      "url": "https://www.ibs.re.kr/scc/main.do",
+      "isInstall": false,
+      "svcNum": "5000000152",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "전북특별자치도홈페이지",
+      "url": "https://www.jeonbuk.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000177",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "치유농업ON",
+      "url": "https://www.agrohealing.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000132",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "나이스대국민서비스(검정고시)",
+      "url": "https://kged.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000375",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "환경공간정보서비스",
+      "url": "https://egis.me.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000279",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "국가재난관리자원 통합관리시스템",
+      "url": "https://krms.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000202",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국가가뭄정보포털",
+      "url": "https://www.drought.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000233",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "고용산재보험토탈서비스(클라우드)",
+      "url": "https://total.comwel.or.kr",
+      "isInstall": true,
+      "svcNum": "5000000358",
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "4대사회보험정보연계센터",
+      "url": "https://www.4insure.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000085",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "가축인공수정사 자격관리시스템",
+      "url": "https://ailicense.nias.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000324",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "농업e지 대민포털",
+      "url": "https://www.nongupez.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000126",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "K-Startup",
+      "url": "https://www.k-startup.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000119",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "축사로",
+      "url": "https://chuksaro.nias.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000323",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "통합인허가지원서비스(IPSS)",
+      "url": "https://ipss.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000223",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "창업기업확인시스템",
+      "url": "https://cert.k-startup.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000112",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "국가환경산업 기술정보시스템",
+      "url": "https://www.konetic.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000403",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "농촌진흥청 대표홈페이지",
+      "url": "https://www.rda.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000131",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "농업유전자원서비스시스템(씨앗은행)",
+      "url": "https://genebank.rda.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000159",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "국민신문고",
+      "url": "https://www.epeople.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000109",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "전자문서함",
+      "url": "https://pubox.gdoc.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000197",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "수입식품정보마루",
+      "url": "https://impfood.mfds.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000200",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "국방전자조달시스템",
+      "url": "https://www.d2b.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000116",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "기술상용화플랫폼",
+      "url": "https://www.newat.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000138",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "국가관세종합정보시스템",
+      "url": "https://unipass.customs.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000369",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "정보공개시스템",
+      "url": "https://www.open.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000398",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "대전도시공사 통합정보시스템",
+      "url": "https://portal.dcco.kr",
+      "isInstall": false,
+      "svcNum": "5000000436"
+    },
+    {
+      "name": "청사관리시스템",
+      "url": "https://evisit.kr.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000198",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "건축행정시스템 세움터",
+      "url": "https://www.eais.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000145",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "강원도 대표홈페이지",
+      "url": "https://state.gwd.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000312",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "포항포털",
+      "url": "https://www.pohang.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000278",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "e나라도움",
+      "url": "https://www.gosims.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000203",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "문서유통센터",
+      "url": "https://center.gdoc.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000536",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "한국무역통계정보포털",
+      "url": "https://www.bandtrass.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000470",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "자동차365",
+      "url": "https://www.car365.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000311",
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "농업과학기술정보서비스",
+      "url": "https://astis.rda.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000235",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "KTV국민방송홈페이지",
+      "url": "https://www.ktv.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000128",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "국방 증명서 통합발급체계",
+      "url": "https://dcis.mnd.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000183",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "에코스퀘어",
+      "url": "https://www.ecosq.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000404",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "한국도박문제예방치유원 대표",
+      "url": "https://www.kcgp.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000253",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "인터넷금융서비스",
+      "url": "https://bank.hf.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000196",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "환경보건종합정보시스템",
+      "url": "https://www.ehtis.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000407",
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "새도약기금",
+      "url": "https://www.newleap.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000492",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "부산생활지도",
+      "url": "https://lifemap.busan.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000452",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "동물의약품 통합정보시스템",
+      "url": "https://medi.qia.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000416",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "광주시 대표 누리집",
+      "url": "https://www.gjcity.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000139",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "세종특별자치시교육청 누리집",
+      "url": "https://www.sje.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000534",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "전자접수시스템",
+      "url": "https://support.klac.or.kr/eklac",
+      "isInstall": false,
+      "svcNum": "5000000288",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "기업sos넷",
+      "url": "https://www.giupsos.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000472",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "국립고궁박물관 대표 홈페이지",
+      "url": "https://www.gogung.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000540",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "문화포털",
+      "url": "https://www.culture.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000280",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "과태료 관리 (조회ㆍ납부)서비스",
+      "url": "https://ifine.moel.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000473",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "보건의료연구자원 정보센터",
+      "url": "https://coda.nih.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000480",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "산림공간정보서비스",
+      "url": "https://map.forest.go.kr/forest",
+      "isInstall": false,
+      "svcNum": "5000000550",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "통합관리시스템(훈련)",
+      "url": "https://train.krms.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000477",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국토정보플랫폼",
+      "url": "https://map.ngii.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000118",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "경기교육공동체포털",
+      "url": "https://gaide.goe.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000453",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "농업과학도서관홈페이지",
+      "url": "https://lib.rda.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000188",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "경찰민원24",
+      "url": "https://minwon24.police.go.kr",
+      "isInstall": true,
+      "svcNum": "5000000346",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국가건강정보포털",
+      "url": "https://health.kdca.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000294",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "숲교육포털",
+      "url": "https://edu.forest.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000427",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "학점은행제",
+      "url": "https://www.cb.or.kr/creditbank/base/nMain.do",
+      "isInstall": true,
+      "svcNum": "5000000354",
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "충남 폭력피해자 지원 시설 업무관리시스템",
+      "url": "https://www.chungnam.go.kr/women_safe/",
+      "isInstall": false,
+      "svcNum": "5000000332",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "물재해 예방 포털",
+      "url": "https://dt.wamis.go.kr/wdp/main.do",
+      "isInstall": false,
+      "svcNum": "5000000397"
+    },
+    {
+      "name": "군산시 대표홈페이지",
+      "url": "https://www.gunsan.go.kr/main",
+      "isInstall": false,
+      "svcNum": "5000000193",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "부동산거래관리시스템",
+      "url": "https://rtms.molit.go.kr/main.jsp",
+      "isInstall": true,
+      "svcNum": "5000000337",
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "산업안전포털교육시스템",
+      "url": "https://edu.kosha.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000076",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "대한적십자사 대표홈페이지",
+      "url": "https://www.redcross.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000165",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "자원예약관리시스템",
+      "url": "https://ereserve.kr.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000199",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "불법사교육신고센터",
+      "url": "https://www.moe.go.kr/sub/infoRenewal.do?m=011520&page=011520&s=moe",
+      "isInstall": false,
+      "svcNum": "5000000104",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "천안시 대표홈페이지",
+      "url": "https://www.cheonan.go.kr/kor.do",
+      "isInstall": false,
+      "svcNum": "5000000567",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "대전도시공사 홈페이지",
+      "url": "https://www.dcco.kr",
+      "isInstall": false,
+      "svcNum": "5000000431",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "e수산공익직불서비스",
+      "url": "https://www.fips.go.kr/fdpms",
+      "isInstall": false,
+      "svcNum": "5000000424",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "식의약데이터포털",
+      "url": "https://data.mfds.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000394",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "주차관리시스템",
+      "url": "https://parking.tax",
+      "isInstall": false,
+      "svcNum": "5000000569",
+      "authMethods": {
+        "mobile": false,
+        "simple": false,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "프리랜서 온",
+      "url": "https://freelancer.seoul.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000429",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "장기조직혈액관리시스템",
+      "url": "https://is.konos.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000546",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "상주시 대표홈페이지",
+      "url": "https://www.sangju.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000245",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "전자민원시스템",
+      "url": "https://www.agrin.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000213",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "교통카드 빅데이터시스템",
+      "url": "https://www.stcis.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000410",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "국가환경교육통합플랫폼",
+      "url": "https://www.keep.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000328",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "의약품안전나라",
+      "url": "https://nedrug.mfds.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000234",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국민연금공단 대표홈페이지",
+      "url": "https://www.nps.or.kr/main.do",
+      "isInstall": true,
+      "svcNum": "5000000535",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "한국문화예술교육진흥원 대표홈페이지",
+      "url": "https://arte.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000435",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "법제교육훈련기관 교육신청 및 관리",
+      "url": "https://edu.moleg.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000163",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "책이음서비스",
+      "url": "https://books.nl.go.kr/one/main/index.do",
+      "isInstall": false,
+      "svcNum": "5000000402",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "청주도시공사홈페이지",
+      "url": "https://www.cjuc.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000481",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "인천항만공사 대표홈페이지",
+      "url": "https://www.icpa.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000194",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "승강기민원24",
+      "url": "https://minwon.koelsa.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000182",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "익산도시관리공단 홈페이지",
+      "url": "https://www.iksancmc.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000374",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "국가암데이터센터 결합전문기관 포털",
+      "url": "https://cancerdata.re.kr/datalink",
+      "isInstall": false,
+      "svcNum": "5000000269",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "문화체육관광부 대표누리집",
+      "url": "https://www.mcst.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000110",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "부동산거래 전자계약",
+      "url": "https://irts.molit.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000246",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국가승강기정보센터",
+      "url": "https://elevator.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000214",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "분석검정홈페이지",
+      "url": "https://lab.koat.or.kr",
+      "isInstall": false,
+      "svcNum": "5000000242",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "전라남도 대표누리집",
+      "url": "https://www.jeonnam.go.kr",
+      "isInstall": false,
+      "svcNum": "5000000179",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "금융인허가등록신고",
+      "url": "https://www.fcsc.kr/",
+      "isInstall": false,
+      "svcNum": "5000000321",
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "인천광역시 도로굴착온라인시스템",
+      "url": "https://imap.incheon.go.kr/ras/",
+      "svcNum": "5000000425",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "국가기초학력지원포털",
+      "url": "https://www.inaea.re.kr/",
+      "svcNum": "5000000458",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "한국농업기술진흥원 대표홈페이지",
+      "url": "https://www.koat.or.kr/",
+      "svcNum": "5000000238",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "건강정보 고속도로",
+      "url": "https://www.myhealthway.go.kr/portal/",
+      "svcNum": "5000000539",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "기술사업화종합정보망",
+      "url": "https://www.nati.or.kr",
+      "svcNum": "5000000241",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": true
+      }
+    },
+    {
+      "name": "금융회사 웹포털",
+      "url": "https://bank.newleap.or.kr",
+      "svcNum": "5000000523",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "어린이안전교육 관리시스템",
+      "url": "https://edu4child.safekorea.go.kr/",
+      "svcNum": "5000000384",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국가재난관리정보시스템",
+      "url": "https://new.ndms.go.kr",
+      "svcNum": "5000000381",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "국가재난조사 정보관리시스템",
+      "url": "https://dims.ndms.go.kr",
+      "svcNum": "5000000382",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "온마이데이터",
+      "url": "https://www.onmydata.go.kr/main",
+      "svcNum": "5000000373",
+      "isInstall": true,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "안전운전 통합민원",
+      "url": "https://www.safedriving.or.kr/",
+      "svcNum": "5000000364",
+      "isInstall": true,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "나만의 예우",
+      "url": "https://pmp.mpva.go.kr/",
+      "svcNum": "5000000162",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "서울특별시교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://senedu.kr/",
+      "svcNum": "5000000396",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "인천광역시교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://icedu.kr/",
+      "svcNum": "5000000440",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "광주광역시교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://genedu.kr/",
+      "svcNum": "5000000441",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "대전광역시교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://ai.djsch.kr/",
+      "svcNum": "5000000442",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "울산광역시교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://usedu.ai.kr/",
+      "svcNum": "5000000443",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "세종특별자치시교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://sjeai.kr/",
+      "svcNum": "5000000444",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "강원특별자치도교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://gwedu.kr/",
+      "svcNum": "5000000445",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "전북특별자치도교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://ai.jbedu.kr/",
+      "svcNum": "5000000446",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "전라남도교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://ai.jne.kr/",
+      "svcNum": "5000000447",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "경상북도교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://aiep.gbe.kr/",
+      "svcNum": "5000000448",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "제주특별자치도교육청_인공지능 맞춤형 교수학습 플랫폼",
+      "url": "https://aiep.jje.kr/",
+      "svcNum": "5000000449",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": false,
+        "simple": true,
+        "joint": true,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "국립장기조직혈액관리원_뇌사관리시스템",
+      "url": "https://mknet.konos.go.kr",
+      "svcNum": "",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": false,
+        "private": false
+      }
+    },
+    {
+      "name": "안동시청",
+      "url": "https://www.andong.go.kr/main.do",
+      "svcNum": "5000010699",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "건설기초안전교육포털",
+      "url": "https://cobedu.kosha.or.kr/",
+      "svcNum": "5000000078",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "VMS",
+      "url": "https://www.vms.or.kr:443",
+      "svcNum": "5000000411",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "VMS-인증관리",
+      "url": "https://info.vms.or.kr:443",
+      "svcNum": "5000000530",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "VMS-교육",
+      "url": "https://edu.vms.or.kr:443",
+      "svcNum": "5000000531",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "VMS-교육(인증관리)",
+      "url": "https://iedu.vms.or.kr:443",
+      "svcNum": "5000000533",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": false,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "한국승강기안전공단 통합로그인사이트",
+      "url": "https://www.koelsa.or.kr/",
+      "svcNum": "5000000524",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": false
+      }
+    },
+    {
+      "name": "농촌인적자원개발센터 교육사이트",
+      "url": "https://hrd.rda.go.kr/ehrd_front/ehrdEduIndex.do",
+      "svcNum": "5000000401",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "인권교육센터",
+      "url": "https://edu.humanrights.go.kr/academy/main/main.do",
+      "svcNum": "5000000363",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    },
+    {
+      "name": "연구24",
+      "url": "https://www.rnd24.go.kr",
+      "svcNum": "5000010759",
+      "isInstall": false,
+      "authMethods": {
+        "mobile": true,
+        "simple": true,
+        "joint": true,
+        "finance": true,
+        "private": true
+      }
+    }
+  ],
+  "lunchMenus": ["2층 닭쌀국수","연남 쌀국수(반세오)","짬뽕밥","명동돈까스","부대찌개","수제비","순대국","은희네 해장국","진짜루","쿠로코라멘","믹슬로우","낙곱세","햄버거 (파파이스 또는 배달)","미소국수","분식집","피자 (피자스쿨?)","랑랑 (볶음밥)","옹심이","포포야 어묵(김치나베)","분식","연남정"],
+  "memo": ""
+}
