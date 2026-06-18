@@ -14,6 +14,7 @@
       --danger: #ff4757;
       --install-color: #00d2ff;
       --success: #2ed573;
+      --ssouse-color: #059669;
     }
 
     body { margin: 0; padding: 25px; display: flex; gap: 25px; height: 100vh; box-sizing: border-box; font-family: 'Pretendard', sans-serif; background-color: var(--bg-color); color: var(--text-main); overflow: hidden; }
@@ -51,7 +52,14 @@
     #counter-title { font-size: 1.8rem; font-weight: 800; color: white; margin: 0; white-space: nowrap; }
 
     .filter-btn { padding: 8px 16px; border-radius: 20px; border: 2px solid var(--install-color); background: transparent; color: var(--install-color); font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.85rem; }
-    .filter-btn.active { background: var(--install-color); color: #1a1625; }
+    .filter-btn.install-btn { border-color: var(--install-color); }
+    .filter-btn.install-btn:hover { background: var(--install-color); color: #1a1625; }
+    .filter-btn.install-btn.active { background: var(--install-color); color: #1a1625; }
+    .filter-btn.install-btn.active:hover { background: #1a1625; color: var(--install-color); }
+    .filter-btn.sso-btn { border-color: var(--ssouse-color); color: var(--ssouse-color); }
+    .filter-btn.sso-btn:hover { background: var(--ssouse-color); color: #1a1625; }
+    .filter-btn.active.sso-btn.active { background: var(--ssouse-color); color: #1a1625; }
+    .filter-btn.active.sso-btn:hover { background: #1a1625; color: var(--ssouse-color); }
     .filter-btn.csv-btn { border-color: var(--success); color: var(--success); }
     .filter-btn.csv-btn:hover { background: var(--success); color: #1a1625; }
 
@@ -61,6 +69,7 @@
     .nav-button { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; background: rgba(255, 255, 255, 0.04); border: 2px solid transparent; border-radius: 18px; color: #fff; transition: 0.2s; height: 165px; cursor: pointer; position: relative; }
     .nav-button:hover { border-color: var(--gold); background: rgba(255, 215, 0, 0.05); transform: translateY(-2px); }
     .nav-button.installed { border-color: var(--install-color); background: rgba(0, 210, 255, 0.05); }
+    .nav-button.sso-active { border-color: var(--ssouse-color); background: rgba(0, 210, 255, 0.05); }
     .nav-button img { width: 42px; height: 42px; margin-bottom: 10px; border-radius: 10px; background: white; padding: 5px; object-fit: contain; }
     .nav-button span { font-size: 0.85rem; text-align: center; font-weight: 600; line-height: 1.2; word-break: keep-all; margin-bottom: 5px; }
 
@@ -73,7 +82,9 @@
 
     .del-badge { position: absolute; top: 10px; right: 8px; background: var(--danger); color: white; font-size: 10px; font-weight: bold; padding: 3px 6px; border-radius: 4px; display: none; z-index: 10; }
     .nav-button:hover .del-badge { display: block; }
-    .install-badge { position: absolute; top: 10px; left: 8px; background: var(--install-color); color: #1a1625; font-size: 10px; font-weight: 800; padding: 3px 6px; border-radius: 4px; z-index: 10; }
+    .badge-group { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 5px; z-index: 10; }
+    .install-badge { display: inline-block; background: var(--install-color); color: #1a1625; font-size: 10px; font-weight: 800; padding: 3px 6px; border-radius: 4px; text-align: center; white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .sso-badge { display: inline-block; background: var(--ssouse-color); color: white; font-size: 10px; font-weight: 800; padding: 3px 6px; border-radius: 4px; text-align: center; white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 
     /* 사이드 상세창 */
     .side-detail { position: fixed; top: 0; right: -450px; width: 400px; height: 100vh; background: #120f1a; transition: 0.4s; z-index: 100; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; border-left: 2px solid var(--gold); overflow-y: auto; }
@@ -92,6 +103,8 @@
       font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; font-family: inherit;
     }
     .btn-install-toggle.on { background: var(--install-color); color: #1a1625; }
+    .btn-usesso-toggle { padding: 10px; border: none; border-radius: 6px; margin-bottom: 10px; cursor: pointer; font-weight: bold; background: #374151; color: #9ca3af; transition: 0.3s; }
+    .btn-usesso-toggle.on { background: var(--ssouse-color); color: white; }
 
     .btn-visit {
       width: 100%; padding: 15px; background: var(--gold); color: #1a1625;
@@ -168,7 +181,8 @@
     <div class="header-area">
       <div class="title-group">
         <h1 id="counter-title">🏛️ 운영기관 목록</h1>
-        <button id="onlyInstallFilter" class="filter-btn" onclick="toggleOnlyInstall()">설치형 보기</button>
+        <button id="onlyInstallFilter" class="filter-btn install-btn" onclick="toggleOnlyInstall()">설치형 보기</button>
+        <button id="onlySsoFilter" class="filter-btn sso-btn" onclick="toggleOnlySSO()">SSO미사용 보기</button>
         <button class="filter-btn csv-btn" onclick="downloadCSV()">CSV 다운로드</button>
       </div>
       <span id="itemCount"># 0 ITEMS</span>
@@ -211,6 +225,7 @@
   </div>
   <div id="detailSaveStatus" style="font-size: 0.7rem; color: var(--success); text-align: right; margin-top: 10px; opacity: 0; transition: 0.3s;">변경사항 저장됨 ✓</div>
   <button id="installToggleBtn" class="btn-install-toggle" onclick="toggleInstallStatus()">설치형 설정/해제</button>
+  <button id="useSsoToggleBtn" class="btn-usesso-toggle" onclick="toggleSSOStatus()">SSO미사용 설정/해제</button>
   <a id="detGoLink" class="btn-visit" href="" target="_blank">사이트 방문하기</a>
 </div>
 
@@ -219,6 +234,7 @@
   let lunchMenus = [];
   let currentDetailIdx = null;
   let isOnlyInstallMode = false;
+  let isOnlySsoMode = false;
   let isRouletteMode = false;
 
   // 룰렛 상태 변수
@@ -279,8 +295,6 @@
     }
   }
   
-  // window.onload = () => { renderButtons(allData); renderMenuChips(); drawRoulette(); loadMemo(); };
-  // 로컬스토리지 대신 서버 데이터를 가져오며 시작
   window.onload = () => { loadFromServer(); };
 
   function autoSaveDetail() {
@@ -296,8 +310,6 @@
     allData[currentDetailIdx].svcNum = newSvc;
     allData[currentDetailIdx].authMethods = authMethods;
 
-    //localStorage.setItem('policyData', JSON.stringify(allData));
-    //로컬스토리지 대신 서버로 변경사항 전송
     saveToServer();
     handleFilter();
 
@@ -322,11 +334,20 @@
         });
       }
       authHtml += '</div>';
+
+      let badgesHtml = '';
+      if (item.isInstall || item.isUseSSO) {
+        badgesHtml += '<div class="badge-group">';
+        if (item.isInstall) { badgesHtml += '<div class="install-badge">설치형</div>'; }
+        if (item.isUseSSO) { badgesHtml += '<div class="sso-badge">SSO사용</div>'; }
+        badgesHtml += '</div>';
+      }
+
       const div = document.createElement('div');
-      div.className = `nav-button ${item.isInstall ? 'installed' : ''}`;
+      div.className = `nav-button ${item.isInstall ? 'installed' : ''} ${item.isUseSSO ? 'sso-active' : ''}`;
       div.onclick = () => openDetail(realIndex);
       div.innerHTML = `
-        ${item.isInstall ? '<div class="install-badge">설치형</div>' : ''}
+        ${badgesHtml}
         <div class="del-badge" onclick="event.stopPropagation(); deleteItem(${realIndex})">✕ 삭제</div>
         <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=128" onerror="this.src='https://icons.duckduckgo.com/ip3/${domain}.ico'">
         <span>${item.name}</span>
@@ -343,6 +364,7 @@
     const authQuery = document.getElementById('authSearchInput').value.trim();
     let filtered = allData;
     if (isOnlyInstallMode) filtered = filtered.filter(item => item.isInstall);
+    if (isOnlySsoMode) filtered = filtered.filter(item => item.isUseSSO);
     if (authQuery) {
       filtered = filtered.filter(item => {
         if (!item.authMethods) return false;
@@ -392,6 +414,7 @@
     document.getElementById('detIcon').src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
     document.getElementById('detGoLink').href = item.url;
     document.getElementById('installToggleBtn').className = `btn-install-toggle ${item.isInstall ? 'on' : ''}`;
+    document.getElementById('useSsoToggleBtn').className = `btn-usesso-toggle ${item.isUseSSO ? 'on' : ''}`;
     const auths = item.authMethods || {};
     document.querySelectorAll('.auth-chk').forEach(chk => { chk.checked = !!auths[chk.getAttribute('data-key')]; });
     document.getElementById('sideDetail').classList.add('active');
@@ -411,12 +434,14 @@
   }
 
   function toggleOnlyInstall() { isOnlyInstallMode = !isOnlyInstallMode; document.getElementById('onlyInstallFilter').classList.toggle('active', isOnlyInstallMode); handleFilter(); }
-  function addManual() { const name = document.getElementById('manualName').value.trim(); let url = document.getElementById('manualUrl').value.trim(); const svc = document.getElementById('manualSvc').value.trim(); if(!name || !url) return alert("데이터 입력 필요"); if(!url.startsWith('http')) url = 'https://' + url; allData.push({ name, url, svcNum: svc, isInstall: false, authMethods: {} }); saveAndRefresh(); }
+  function toggleOnlySSO() { isOnlySsoMode = !isOnlySsoMode; document.getElementById('onlySsoFilter').classList.toggle('active', isOnlySsoMode); handleFilter(); }
+  function addManual() { const name = document.getElementById('manualName').value.trim(); let url = document.getElementById('manualUrl').value.trim(); const svc = document.getElementById('manualSvc').value.trim(); if(!name || !url) return alert("데이터 입력 필요"); if(!url.startsWith('http')) url = 'https://' + url; allData.push({ name, url, svcNum: svc, isInstall: false, isUseSSO: false, authMethods: {} }); saveAndRefresh(); }
   function saveAndRefresh() { saveToServer().then(() => { handleFilter(); }); }
   function deleteItem(idx) { if(confirm("삭제?")) { allData.splice(idx, 1); saveAndRefresh(); } }
   function clearStorage() { if(confirm("초기화?")) { allData = []; lunchMenus = ["김치찌개", "돈까스", "제육볶음", "짜장면", "초밥", "햄버거", "마라탕", "쌀국수"]; document.getElementById('personalMemo').value = ''; saveToServer().then(() => { location.reload(); }); } }
   function closeDetail() { document.getElementById('sideDetail').classList.remove('active'); document.getElementById('overlay').classList.remove('active'); }
   function toggleInstallStatus() { if (currentDetailIdx === null) return; allData[currentDetailIdx].isInstall = !allData[currentDetailIdx].isInstall; autoSaveDetail(); }
+  function toggleSSOStatus() { if (currentDetailIdx === null) return; allData[currentDetailIdx].isUseSSO = !allData[currentDetailIdx].isUseSSO; autoSaveDetail(); }
   function saveMemo() { const indicator = document.getElementById('saveIndicator'); if(indicator) indicator.style.display = 'block'; saveToServer().then(() => { setTimeout(() => { if(indicator) indicator.style.display = 'none'; }, 1000); }); }
   function loadMemo() { }
   function clearMemo() { if(confirm("삭제?")) { document.getElementById('personalMemo').value = ''; saveToServer(); } }
@@ -436,7 +461,7 @@
         let n = g[uIdx-1], u = g[uIdx];
         if(!n || n==='-' || !u) return;
         if(!u.startsWith('http')) u = 'https://' + u;
-        allData.push({ name: n, url: u, svcNum: "", isInstall: false, authMethods: {} });
+        allData.push({ name: n, url: u, svcNum: "", isInstall: false, isUseSSO: false, authMethods: {} });
         count++;
       }
     }
