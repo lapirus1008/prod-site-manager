@@ -67,6 +67,11 @@
 
     /* 기관 카드 스타일 */
     .nav-button { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; background: rgba(255, 255, 255, 0.04); border: 2px solid transparent; border-radius: 18px; color: #fff; transition: 0.2s; height: 165px; cursor: pointer; position: relative; }
+    .nav-button.dragging { opacity: 0.45; transform: scale(0.98); }
+    .drag-handle { position: absolute; top: 30px; left: 9px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; border-radius: 7px; color: #aaa; font-size: 18px; line-height: 1; cursor: grab; user-select: none; touch-action: none; z-index: 20; }
+    .drag-handle:hover { color: var(--gold); background: rgba(255, 204, 0, 0.12); }
+    .drag-handle:active { cursor: grabbing; }
+    .nav-button.drag-over { border-color: var(--gold); background: rgba(255, 215, 0, 0.12); transform: translateY(-2px); }
     .nav-button:hover { border-color: var(--gold); background: rgba(255, 215, 0, 0.05); transform: translateY(-2px); }
     .nav-button.installed { border-color: var(--install-color); background: rgba(0, 210, 255, 0.05); }
     .nav-button.sso-active { border-color: var(--ssouse-color); background: rgba(0, 210, 255, 0.05); }
@@ -237,6 +242,10 @@
   let isOnlySsoMode = false;
   let isRouletteMode = false;
 
+  // 기관 드래그 정렬 상태
+  let draggedIndex = null;
+  let isDraggingFromHandle = false;
+
   // 룰렛 상태 변수
   let currentRotation = 0;
   let isSpinning = false;
@@ -319,18 +328,34 @@
     window.saveTimer = setTimeout(() => { status.style.opacity = '0'; }, 1000);
   }
 
+  function isReorderEnabled() {
+    const nameQuery = document.getElementById('searchInput').value.trim();
+    const svcQuery = document.getElementById('svcSearchInput').value.trim();
+    const authQuery = document.getElementById('authSearchInput').value.trim();
+
+    return !nameQuery && !svcQuery && !authQuery && !isOnlyInstallMode && !isOnlySsoMode;
+  }
+
+  function resetDragState() {
+    draggedIndex = null;
+    isDraggingFromHandle = false;
+    document.querySelectorAll('.nav-button').forEach(btn => {
+      btn.classList.remove('dragging');
+      btn.classList.remove('drag-over');
+    });
+  }
+
   function renderButtons(data) {
     const grid = document.getElementById('buttonGrid');
     grid.innerHTML = '';
+
     data.forEach((item) => {
       const realIndex = allData.indexOf(item);
       const domain = item.url.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
       let authHtml = '<div class="auth-badge-row">';
       if(item.authMethods) {
         Object.keys(authConfig).forEach(key => {
-          if(item.authMethods[key]) {
-            authHtml += `<div class="auth-badge">${authConfig[key].text}</div>`;
-          }
+          if(item.authMethods[key]) authHtml += `<div class="auth-badge">${authConfig[key].text}</div>`;
         });
       }
       authHtml += '</div>';
@@ -338,23 +363,83 @@
       let badgesHtml = '';
       if (item.isInstall || item.isUseSSO) {
         badgesHtml += '<div class="badge-group">';
-        if (item.isInstall) { badgesHtml += '<div class="install-badge">설치형</div>'; }
-        if (item.isUseSSO) { badgesHtml += '<div class="sso-badge">SSO미사용</div>'; }
+        if (item.isInstall) badgesHtml += '<div class="install-badge">설치형</div>';
+        if (item.isUseSSO) badgesHtml += '<div class="sso-badge">SSO미사용</div>';
         badgesHtml += '</div>';
       }
 
       const div = document.createElement('div');
       div.className = `nav-button ${item.isInstall ? 'installed' : ''} ${item.isUseSSO ? 'sso-active' : ''}`;
-      div.onclick = () => openDetail(realIndex);
+
+      // 검색/필터가 전혀 없는 전체 목록에서만 드래그 정렬 가능
+      const canReorder = isReorderEnabled();
+
+      if (canReorder) {
+        div.draggable = false;
+      }
+
       div.innerHTML = `
         ${badgesHtml}
         <div class="del-badge" onclick="event.stopPropagation(); deleteItem(${realIndex})">✕ 삭제</div>
+        ${canReorder ? '<div class="drag-handle" title="순서 변경" draggable="true">⋮⋮</div>' : ''}
         <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=128" onerror="this.src='https://icons.duckduckgo.com/ip3/${domain}.ico'">
         <span>${item.name}</span>
         <div class="svc-info">${item.svcNum ? `<div class="svc-badge">No. ${item.svcNum}</div>` : ''}${authHtml}</div>
       `;
+
+      if (canReorder) {
+        const handle = div.querySelector('.drag-handle');
+
+        handle.addEventListener('dragstart', (event) => {
+          isDraggingFromHandle = true;
+          draggedIndex = realIndex;
+          div.classList.add('dragging');
+          event.dataTransfer.effectAllowed = 'move';
+          event.dataTransfer.setData('text/plain', String(realIndex));
+        });
+
+        div.addEventListener('dragover', (event) => {
+          if (!isDraggingFromHandle) return;
+          event.preventDefault();
+          event.dataTransfer.dropEffect = 'move';
+          if (draggedIndex !== realIndex) div.classList.add('drag-over');
+        });
+
+        div.addEventListener('dragleave', () => div.classList.remove('drag-over'));
+
+        div.addEventListener('drop', (event) => {
+          if (!isDraggingFromHandle) return;
+          event.preventDefault();
+          event.stopPropagation();
+          div.classList.remove('drag-over');
+
+          const fromIndex = draggedIndex;
+          const toIndex = realIndex;
+
+          if (fromIndex === null || fromIndex === toIndex) {
+            resetDragState();
+            return;
+          }
+
+          const movedItem = allData.splice(fromIndex, 1)[0];
+          allData.splice(toIndex, 0, movedItem);
+
+          resetDragState();
+          saveToServer().then(() => handleFilter());
+        });
+
+        handle.addEventListener('dragend', () => {
+          resetDragState();
+        });
+      }
+
+      div.addEventListener('click', () => {
+        if (!isDraggingFromHandle) openDetail(realIndex);
+      });
+
       grid.appendChild(div);
     });
+
     document.getElementById('itemCount').innerText = `# ${data.length} ITEMS`;
   }
 
